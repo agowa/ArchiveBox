@@ -76,7 +76,8 @@ services:
 
     init-sonic:
         image: quay.io/curl/curl:latest
-        user: root
+        user: "0"
+        userns_mode: keep-id:uid=1000
         command: ["/bin/sh", "-c", "test -s /run/sonic/sonic.cfg || curl -fsSL 'https://raw.githubusercontent.com/ArchiveBox/ArchiveBox/stable/etc/sonic.cfg' > /run/sonic/sonic.cfg"]          
         volumes:
             - ./data/sonic.cfg:/run/sonic     
